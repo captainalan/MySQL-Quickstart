@@ -127,7 +127,7 @@ connection.connect();
 
 connection.query('SELECT * FROM drinks', (error, results, fields) => {
   if (error) throw error;
-  console.log('My data: ' + JSON.stringify(results));
+  console.log(JSON.stringify(results)); // Output JSON as string to console 
 });
 
 connection.end()
@@ -138,10 +138,10 @@ Now, from the directory where you saved this file, run `node index.js`.
 Assuming you've been following all of the previous steps, you should get output
 something like this:
 
-> My data: [{"id":1,"name":"water","note":"essential for life"},{"id":2,"name":"coffee","note":"now u r woke"},{"id":3,"name":"kombucha","note":"what are you? a hipster?!"}]
+> [{"id":1,"name":"water","note":"essential for life"},{"id":2,"name":"coffee","note":"now u r woke"},{"id":3,"name":"kombucha","note":"what are you? a hipster?!"}]
 
 
-### `ER_NOT_SUPPORTED_AUTH_MODE`
+### Troubleshooting `ER_NOT_SUPPORTED_AUTH_MODE`
 
 Got this ^ error? 
 Thanks, 
@@ -150,7 +150,18 @@ Thanks,
 ```sql
 ALTER USER 'bar'@'localhost' IDENTIFIED WITH mysql_native_password BY 'baz';
 ```
+## Doing stuff from emacs
 
+Run `M-x sql-mysql` (this should be installed by default).
+
+When prompted for 'server' leave it blank as it should default to the
+correct localhost setup.
+
+![emacs screenshot](./public/images/emacs_screenshot.png)
+
+The theme here is n3mo's [Cyberpunk Theme](https://github.com/n3mo/cyberpunk-theme.el)
+
+See [this blog post](https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client) by Truong TX for more information.
 
 ## Doing stuff from Python 
 
@@ -168,4 +179,4 @@ We will now open MySQL workbench to see all the active connections.
 You can see a list of supported languages 
 [here](https://dev.mysql.com/doc/refman/8.0/en/connectors-apis.html).
 
-
+![Multiple connections from MySQLWorkbench](./public/images/client_connections.png)
