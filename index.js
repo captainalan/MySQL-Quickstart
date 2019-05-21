@@ -1,17 +1,29 @@
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host      : 'localhost',
-  user      : 'bar',
-  password  : 'baz',
-  database  : 'foo_db',
-  port      : 3306      // Default port for MySQL
+var express = require('express');
+var app = express();
+var mysql = require('promise-mysql');
+
+// Redirect root to our sole sole API endpoint
+app.get('/', function(request, response) {
+    response.redirect('/api/drinks');
 });
 
-connection.connect();
-
-connection.query('SELECT * FROM drinks', (error, results, fields) => {
-  if (error) throw error;
-  console.log(JSON.stringify(results)); // Output JSON as string to console
+// Uses Promise-based API
+app.get('/api/drinks', function(request, response) {
+    mysql.createConnection({
+	host      : 'localhost',
+	user      : 'bar',
+	password  : 'baz',
+	database  : 'foo_db',
+	port      : 3306      // Default port for MySQL
+    }).then(function(connection){
+	var result = connection.query('SELECT * FROM drinks');
+	connection.end();
+	return result;
+    }).then(function(rows){
+	response.json(rows);
+    });
 });
 
-connection.end()
+app.listen(3000, function(){
+    console.log("Listening on port 3000");
+});

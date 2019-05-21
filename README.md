@@ -125,7 +125,8 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT * FROM drinks', (error, results, fields) => {
+connection.query('SELECT * FROM drinks',
+	             function (error, results, fields) {
   if (error) throw error;
   console.log(JSON.stringify(results)); // Output JSON as string to console 
 });
@@ -140,6 +141,12 @@ something like this:
 
 > [{"id":1,"name":"water","note":"essential for life"},{"id":2,"name":"coffee","note":"now u r woke"},{"id":3,"name":"kombucha","note":"what are you? a hipster?!"}]
 
+A plain string like this is OK, but we can do way better. Let's create
+a web server that will return this (an API with one path).
+
+```bash
+npm install --save express
+```
 
 ### Troubleshooting `ER_NOT_SUPPORTED_AUTH_MODE`
 
