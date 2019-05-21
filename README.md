@@ -148,6 +148,58 @@ a web server that will return this (an API with one path).
 npm install --save express
 ```
 
+We are also going to need to install another package, `promise-mysql`,
+because our new program will make use of **asynchronous**
+code. Analagously to how we just installed `express`, do:
+
+```bash
+npm install --save promise sql
+```
+
+Now, replace the contents of `index.js` with this:
+
+```javascript
+var express = require('express');
+var app = express();
+var mysql = require('promise-mysql');
+
+// Redirect root to our sole sole API endpoint
+app.get('/', function(request, response) {
+    response.redirect('/api/drinks');
+});
+
+// Uses Promise-based API
+app.get('/api/drinks', function(request, response) {
+    mysql.createConnection({
+        host      : 'localhost',
+        user      : 'bar',
+        password  : 'baz',
+        database  : 'foo_db',
+        port      : 3306      // Default port for MySQL
+    }).then(function(connection){
+        var result = connection.query('SELECT * FROM drinks');
+        connection.end();
+        return result;
+    }).then(function(rows){
+        response.json(rows);
+    });
+});
+
+app.listen(3000, function(){
+    console.log("Listening on port 3000");
+});
+
+```
+
+What blocky code! Run your (new) web server with `node index.js` from
+the root directory and then navigate to
+[http://localhost:3000](http://localhost:3000). Your web server should
+return the same code JSON got in through the command line earlier.
+
+![JSON in Chrome](./public/images/chrome.png)
+
+My output, using the [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) Chrome extension.
+
 ### Troubleshooting `ER_NOT_SUPPORTED_AUTH_MODE`
 
 Got this ^ error? 
