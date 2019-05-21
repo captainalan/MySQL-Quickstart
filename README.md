@@ -291,11 +291,26 @@ formatted JSON response.
 
 ## Multiple Connections
 
-(Open multiple connections at once...) 
-
-We will now open MySQL workbench to see all the active connections.
-
-You can see a list of supported languages 
-[here](https://dev.mysql.com/doc/refman/8.0/en/connectors-apis.html).
+Throughout this tutorial, we've been poking around our MySQL server
+using various tools. That is, we've been making *multiple connections*
+to our server. You can use MySQL workbench to see all the active
+connections.
 
 ![Multiple connections from MySQLWorkbench](./public/images/client_connections.png)
+
+This is one of the advantages of using MySQL (or another comparable
+database) over a slimmer solution like
+[SQLite](https://www.sqlite.org/index.html).
+
+## Where to go for here
+
+In this short tutorial, we have introduced a handful of powerful tools
+that can be used to build awesome software solutions.
+
+- **MySQL** as a database
+  + With **MySQLWorkbench** to help you do things in a pointy-clicky way
+- **Node** for server side scripting, including querying databases
+  + Can be used to write seeder scripts, migration scripts, and more
+  + Was used to write our web server with **Express**
+- **Emacs** as your favorite text editor, REST API tester, and command
+  line interface to SQL
