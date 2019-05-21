@@ -1,0 +1,3 @@
+# send a GET request to our API
+GET http://localhost:3000/api/drinks
+User-Agent: Emacs Restclient

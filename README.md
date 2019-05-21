@@ -1,7 +1,8 @@
 # Getting Started with MySQL
 
 In this tutorial, we will set up a MySQL server and write a little
-API using Node and Express.
+API using Node and Express. We'll then poke around and look at our
+MySQL server using various tools (emacs and MySQLWorkbench).
 
 ## Setup
 
@@ -242,6 +243,51 @@ through emacs.
 See [this blog
 post](https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client)
 by Truong TX for more information on interacting with SQL from emacs.
+
+### Accessing our API
+
+Lets install another thing in emacs: `M-x restclient`. This will allow
+us to explore our webserve as a [REST
+API](https://github.com/captainalan/REST-what).
+
+Now, I will open a new buffer in `restclient-mode`. You can see the
+file I used in this repo (`request.txt`). Put the cursor after all the
+text and run `C-c C-c`. A new buffer should pop up with a nicely
+formatted JSON response.
+
+```json
+[
+  {
+    "id": 1,
+    "name": "water",
+    "note": "essential for life"
+  },
+  {
+    "id": 2,
+    "name": "coffee",
+    "note": "now u r woke"
+  },
+  {
+    "id": 3,
+    "name": "kombucha",
+    "note": "what are you? a hipster?!"
+  },
+  {
+    "id": 4,
+    "name": "orange juice",
+    "note": "made from real oranges"
+  }
+]
+// GET http://localhost:3000/api/drinks
+// HTTP/1.1 200 OK
+// X-Powered-By: Express
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 225
+// ETag: W/"e1-9GYUrmF0mHF90BTTWiTvbswEy5M"
+// Date: Tue, 21 May 2019 17:00:31 GMT
+// Connection: keep-alive
+// Request duration: 0.043737s
+```
 
 ## Multiple Connections
 
