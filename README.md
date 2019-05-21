@@ -314,3 +314,12 @@ that can be used to build awesome software solutions.
   + Was used to write our web server with **Express**
 - **Emacs** as your favorite text editor, REST API tester, and command
   line interface to SQL
+  
+Using this small set of tools you can do like... *anything*
+(almost). But here's some ideas to start:
+
+- Write a POST route for the `/api/drinks` endpoint used in this
+  tutorial. This should allow users to add new drinks.
+- Install a **templating engine** and have Express serve a client to
+  interact with your MySQL database.
+- Add another column do the `drinks` table
