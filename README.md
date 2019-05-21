@@ -1,5 +1,8 @@
 # Getting Started with MySQL
 
+In this tutorial, we will set up a MySQL server and write a little
+API using Node and Express.
+
 ## Setup
 
 Download and install and install the [MySQL Community
@@ -31,7 +34,7 @@ add the same line to your `.bashrc` file.
 export PATH="/usr/local/mysql/bin:$PATH"
 ```
 
-## Making a new user, database, and table
+## Making a New User, Database, and Table
 
 Run `mysql -u root -p` to log in to a MySQL shell as root. You will be prompted
 for your password which you set during installation.
@@ -212,15 +215,29 @@ return the same code JSON got in through the command line earlier.
 
 My output, using the [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) Chrome extension.
 
-## Doing stuff from emacs
+## Doing Stuff From Emacs
 
 Run `M-x sql-mysql` (this should be installed by default).  When
 prompted for 'server' leave it blank as it should default to the
 correct localhost setup.
 
-![emacs screenshot](./public/images/emacs_screenshot.png)
+![Emacs and MySQL Setup](./public/images/emacs_screenshot01.png)
 
-The theme here is n3mo's [Cyberpunk Theme](https://github.com/n3mo/cyberpunk-theme.el). I tell you this because I like this theme :P
+(The theme here is n3mo's [Cyberpunk
+Theme](https://github.com/n3mo/cyberpunk-theme.el). I tell you this
+because I like this theme :P)
+
+Now you can interact with your MySQL server from emacs. Try running
+some SQL commands, e.g. `INSERT INTO drinks VALUES ...`. Note that SQL
+key words aren't case sensitive and that emacs highlights keywords so
+that they are easy do distinguish, even when typing in lowercase.
+
+![Interacting with the MySQL Server](./public/images/emacs_screenshot02.png)
+
+Make sure your server on [localhost:3000](http://localhost:3000) is
+still running and refresh your browser. The results served in your
+browser should reflect the updates to your MySQL server you just made
+through emacs.
 
 See [this blog
 post](https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client)
