@@ -4,7 +4,6 @@
 
 Download and install and install the [MySQL Community
 Edition](https://dev.mysql.com/downloads/mysql/) server. 
-
 I kept all the default options.
 
 ### Optional: MySQLWorkbench
@@ -17,7 +16,7 @@ For a nice GUI tool, download and install
 **Note:** These instructions assume you are using a UNIX based system (including
 MacOS).
 
-You may have to edit your `$PATH` environmental variable. Check what this is by
+You may have to edit your `$PATH` environmental variable. Check that this is by
 running:
 
 ```bash
@@ -105,7 +104,7 @@ you output something like this:
     +----+----------+---------------------------+
     3 rows in set (0.00 sec)
 
-## Doing stuff from Node
+## MySQL from Node
 
 (Insert Node/npm install things)
 
@@ -141,8 +140,21 @@ something like this:
 
 > [{"id":1,"name":"water","note":"essential for life"},{"id":2,"name":"coffee","note":"now u r woke"},{"id":3,"name":"kombucha","note":"what are you? a hipster?!"}]
 
-A plain string like this is OK, but we can do way better. Let's create
-a web server that will return this (an API with one path).
+### Troubleshooting `ER_NOT_SUPPORTED_AUTH_MODE`
+
+Got this ^ error? 
+Thanks, 
+[stack overflow](https://stackoverflow.com/questions/44946270/er-not-supported-auth-mode-mysql-server) for this fix:
+
+```sql
+ALTER USER 'bar'@'localhost' IDENTIFIED WITH mysql_native_password BY 'baz';
+```
+
+## Making a Web Server
+
+A plain string like the one we got above is OK, but we can do way
+better. Let's create a web server that will return this (an API with
+one endpoint).
 
 ```bash
 npm install --save express
@@ -200,34 +212,19 @@ return the same code JSON got in through the command line earlier.
 
 My output, using the [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) Chrome extension.
 
-### Troubleshooting `ER_NOT_SUPPORTED_AUTH_MODE`
-
-Got this ^ error? 
-Thanks, 
-[stack overflow](https://stackoverflow.com/questions/44946270/er-not-supported-auth-mode-mysql-server) for this fix:
-
-```sql
-ALTER USER 'bar'@'localhost' IDENTIFIED WITH mysql_native_password BY 'baz';
-```
 ## Doing stuff from emacs
 
-Run `M-x sql-mysql` (this should be installed by default).
-
-When prompted for 'server' leave it blank as it should default to the
+Run `M-x sql-mysql` (this should be installed by default).  When
+prompted for 'server' leave it blank as it should default to the
 correct localhost setup.
 
 ![emacs screenshot](./public/images/emacs_screenshot.png)
 
-The theme here is n3mo's [Cyberpunk Theme](https://github.com/n3mo/cyberpunk-theme.el)
+The theme here is n3mo's [Cyberpunk Theme](https://github.com/n3mo/cyberpunk-theme.el). I tell you this because I like this theme :P
 
-See [this blog post](https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client) by Truong TX for more information.
-
-## Doing stuff from Python 
-
-We are now going to interact with the same database we just interacted with from
-Node using Python now. Not only is this fun (it is, right? :D) it demonstrates 
-how a MySQL server might be connected to from many different programs using
-different languages. 
+See [this blog
+post](https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client)
+by Truong TX for more information on interacting with SQL from emacs.
 
 ## Multiple Connections
 
