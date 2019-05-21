@@ -1,0 +1,14 @@
+{
+  "name": "mysql-quickstart",
+  "version": "0.0.1",
+  "description": "messing around with MySQL and node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
+}
